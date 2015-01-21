@@ -3,7 +3,7 @@ node_modules
 .DS_Store
 
 # built files
-dev/app.js
-dev/app.js.map
-build/app.js
-build/app.js.map
+dev/index.js
+dev/index.js.map
+build/index.js
+build/index.js.map

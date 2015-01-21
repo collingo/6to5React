@@ -21,23 +21,23 @@ function minify () {
   var bundler = new browserify({
     debug: true
   });
-  bundler.add('./src/app.js');
+  bundler.add('./src/index.js');
   bundler.transform(reactify);
   bundler.transform(to5ify);
   bundler.plugin('minifyify', {
-    map: 'app.js.map',
+    map: 'index.js.map',
     uglify: true
   });
   bundler.bundle(function (err, src, map) {
     var fs = require('fs');
-    fs.writeFile("build/app.js", src, function(err) {
+    fs.writeFile("build/index.js", src, function(err) {
       if(err) {
         console.log(err);
       } else {
         console.log("The src was saved!");
       }
     });
-    fs.writeFile("build/app.js.map", map, function(err) {
+    fs.writeFile("build/index.js.map", map, function(err) {
       if(err) {
         console.log(err);
       } else {
