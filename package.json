@@ -4,14 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run serve & npm run watch && fg",
+    "serve": "cd dev && python -m SimpleHTTPServer",
+    "watch": "onchange 'src/app.js' -- npm run compile",
+    "compile": "browserify -d -t 6to5ify -t reactify src/app.js > dev/app.js",
+    "release": "./tasks minify"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "6to5": "^2.13.5",
+    "6to5ify": "^3.1.2",
     "browserify": "^8.1.1",
     "envify": "^3.2.0",
+    "minifyify": "^6.0.0",
+    "minimist": "^1.1.0",
+    "onchange": "0.0.2",
+    "react": "^0.12.2",
     "reactify": "^0.17.1"
   }
 }

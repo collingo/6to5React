@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+var argv = require('minimist')(process.argv.slice(2));
+var reactify = require('reactify');
+var to5ify = require("6to5ify");
+
+var task = argv._[0]
+
+switch(task) {
+  case 'test':
+    console.log('test');
+    break;
+  case 'minify':
+    minify();
+    break;
+  default:
+    console.warn('No task found!');
+}
+
+function minify () {
+  var browserify = require('browserify');
+  var bundler = new browserify({
+    debug: true
+  });
+  bundler.add('./src/app.js');
+  bundler.transform(reactify);
+  bundler.transform(to5ify);
+  bundler.plugin('minifyify', {
+    map: 'app.js.map',
+    uglify: true
+  });
+  bundler.bundle(function (err, src, map) {
+    var fs = require('fs');
+    fs.writeFile("build/app.js", src, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("The src was saved!");
+      }
+    });
+    fs.writeFile("build/app.js.map", map, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("The map was saved!");
+      }
+    });
+  });
+}

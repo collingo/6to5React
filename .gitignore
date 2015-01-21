@@ -1,2 +1,9 @@
 npm-debug.log
 node_modules
+.DS_Store
+
+# built files
+dev/app.js
+dev/app.js.map
+build/app.js
+build/app.js.map
