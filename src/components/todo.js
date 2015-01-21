@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 class Todo {
   render() {
@@ -14,4 +14,4 @@ class Todo {
   }
 };
 
-module.exports = React.createClass(Todo.prototype);
+export default React.createClass(Todo.prototype);

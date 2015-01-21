@@ -1,6 +1,6 @@
-var React = require('react');
-var List = require('./list.js');
-var R = require('ramda');
+import React from 'react';
+import List from './list.js';
+import R from 'ramda';
 
 // patching in 'call' as it seemed to be missing
 // from 0.8.0 even though it is documented
@@ -83,4 +83,4 @@ class App {
   }
 };
 
-module.exports = React.createClass(App.prototype);
+export default React.createClass(App.prototype);

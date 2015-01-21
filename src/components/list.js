@@ -1,5 +1,5 @@
-var React = require('react');
-var Todo = require('./todo.js');
+import React from 'react';
+import Todo from './todo.js';
 
 class List {
   render() {
@@ -9,7 +9,7 @@ class List {
         todo={todo}
         onClick={this.props.onClick}
       />, this);
-    
+
     return (
       <div className="children">
         <ul>
@@ -20,4 +20,4 @@ class List {
   }
 };
 
-module.exports = React.createClass(List.prototype);
+export default React.createClass(List.prototype);

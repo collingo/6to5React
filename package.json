@@ -7,7 +7,7 @@
     "start": "npm run compile & npm run copyDevHtml & npm run serveDev & npm run watch && fg",
     "serveDev": "cd dev && python -m SimpleHTTPServer",
     "watch": "onchange 'src/**/*.js' -- npm run compile",
-    "compile": "browserify -d -t 6to5ify -t reactify src/index.js > dev/index.js & npm run copyDevHtml",
+    "compile": "browserify -d -t [ 6to5ify --modules common ] -t reactify src/index.js > dev/index.js & npm run copyDevHtml",
     "copyDevHtml": "cp src/index.html dev/index.html",
     "release": "npm run copyBuildHtml & ./tasks minify",
     "copyBuildHtml": "cp src/index.html build/index.html",
