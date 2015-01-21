@@ -1,8 +1,13 @@
 var React = require('react');
 
 class App {
+  getInitialState() {
+    return {
+      greeting: 'Welcome to React'
+    };
+  }
   render() {
-    return <div>Hello, {this.props.name}!</div>
+    return <div>Hello, {this.props.name}! {this.state.greeting}</div>
   }
 };
 
