@@ -6,7 +6,6 @@ A test repo for setting up ES6>ES5 precompilation for React projects
 
 - [node](http://nodejs.org/)
 - npm
-- OSX
 
 ## Setup
 
