@@ -1,5 +1,5 @@
 import React from 'react';
-import Todo from './todo.js';
+import Todo from '../todo/todo';
 
 class List {
   render() {

@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run compile & npm run copyDevHtml & npm run serveDev & npm run watch && fg",
-    "serveDev": "cd dev && python -m SimpleHTTPServer",
-    "watch": "onchange 'src/**/*.js' -- npm run compile",
-    "compile": "browserify -d -t [ 6to5ify --modules common ] -t reactify src/index.js > dev/index.js & npm run copyDevHtml",
-    "copyDevHtml": "cp src/index.html dev/index.html",
-    "release": "npm run copyBuildHtml & ./tasks minify",
-    "copyBuildHtml": "cp src/index.html build/index.html",
-    "serveBuild": "cd build && python -m SimpleHTTPServer 8001"
+    "start": "npm run devServe & npm run devHtml & npm run devCss & npm run devJs && fg",
+    "devServe": "cd dev && python -m SimpleHTTPServer",
+    "devHtml": "onchange 'src/**/*.html' -- cp src/index.html dev/index.html",
+    "devCss": "stylus -w -m --sourcemap-inline src/index.styl -o dev",
+    "devJs": "watchify -d -t [ 6to5ify --modules common ] -t reactify src/index.js -o dev/index.js",
+
+    "release": "npm run releaseHtml & npm run releaseCss & npm run releaseJs",
+    "releaseHtml": "cp src/index.html build/index.html",
+    "releaseCss": "stylus -m -c src/index.styl -o build",
+    "releaseJs": "./tasks minify",
+    "releaseServe": "cd build && python -m SimpleHTTPServer 8001"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +27,8 @@
     "onchange": "0.0.2",
     "ramda": "^0.8.0",
     "react": "^0.12.2",
-    "reactify": "^0.17.1"
+    "reactify": "^0.17.1",
+    "stylus": "^0.49.3",
+    "watchify": "^2.2.1"
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import List from './list.js';
+import List from '../list/list';
 import R from 'ramda';
 
 // patching in 'call' as it seemed to be missing
