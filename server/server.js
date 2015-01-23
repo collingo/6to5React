@@ -1,4 +1,5 @@
 var App = require('express');
+var morgan = require('morgan');
 var cons = require('consolidate');
 
 // environment
@@ -20,6 +21,17 @@ var app = App();
 app.engine('html', cons.underscore);
 app.set('view engine', 'html');
 app.set('views', '../client');
+
+// logging
+var logFormat = JSON.stringify({
+  "method": ":method",
+  "url": ":url",
+  "status": ":status",
+  "date": ":date[iso]",
+  "duration": ":response-time ms",
+  "content_length": ":res[content-length]"
+});
+app.use(morgan(logFormat));
 
 // dynamic routes
 app.get('/', function (req, res) {

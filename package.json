@@ -7,7 +7,7 @@
     "start": "npm run devServe & npm run devHtml & npm run devCss & npm run devJs && fg",
     "devServe": "cd server && nodemon server.js",
     "devCss": "stylus -m --sourcemap-inline client/index.styl -o dev && stylus -w -m --sourcemap-inline client/index.styl -o dev",
-    "devJs": "watchify -d -t [ 6to5ify --modules common ] -t reactify client/index.js -o dev/index.js",
+    "devJs": "watchify -v -d -t [ 6to5ify --modules common ] -t reactify client/index.js -o dev/index.js",
     "release": "npm run releaseHtml & npm run releaseCss & npm run releaseJs",
     "releaseCss": "stylus -m -c client/index.styl -o build",
     "releaseJs": "./tasks minify",
@@ -23,13 +23,14 @@
     "express": "^4.11.1",
     "minifyify": "^6.0.0",
     "minimist": "^1.1.0",
+    "morgan": "^1.5.1",
     "ramda": "^0.8.0",
     "react": "^0.12.2",
     "reactify": "^0.17.1",
-    "stylus": "^0.49.3",
-    "watchify": "^2.2.1"
+    "stylus": "^0.49.3"
   },
   "devDependencies": {
-    "nodemon": "^1.3.2"
+    "nodemon": "^1.3.2",
+    "watchify": "^2.2.1"
   }
 }
