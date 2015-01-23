@@ -2,35 +2,34 @@
   "name": "6to5test",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
     "start": "npm run devServe & npm run devHtml & npm run devCss & npm run devJs && fg",
-    "devServe": "node server/server.js",
-    "devHtml": "onchange 'client/**/*.html' -- cp client/index.html dev/index.html",
-    "devCss": "stylus -w -m --sourcemap-inline client/index.styl -o dev",
+    "devServe": "cd server && nodemon server.js",
+    "devCss": "stylus -m --sourcemap-inline client/index.styl -o dev && stylus -w -m --sourcemap-inline client/index.styl -o dev",
     "devJs": "watchify -d -t [ 6to5ify --modules common ] -t reactify client/index.js -o dev/index.js",
     "release": "npm run releaseHtml & npm run releaseCss & npm run releaseJs",
-    "releaseHtml": "cp client/index.html build/index.html",
     "releaseCss": "stylus -m -c client/index.styl -o build",
-    "releaseJs": "./tasks minify && cp -R client build/client",
-    "releaseServe": "ENV=production node server/server.js"
+    "releaseJs": "./tasks minify",
+    "releaseServe": "cd server && ENV=production nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "6to5ify": "^3.1.2",
     "browserify": "^8.1.1",
+    "consolidate": "^0.10.0",
     "envify": "^3.2.0",
     "express": "^4.11.1",
-    "koa": "^0.15.0",
-    "koa-static": "^1.4.8",
     "minifyify": "^6.0.0",
     "minimist": "^1.1.0",
-    "onchange": "0.0.2",
     "ramda": "^0.8.0",
     "react": "^0.12.2",
     "reactify": "^0.17.1",
     "stylus": "^0.49.3",
     "watchify": "^2.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.3.2"
   }
 }
