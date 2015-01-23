@@ -1,15 +1,19 @@
-import React from 'react';
-import Todo from '../todo/todo';
+var React = require('react');
+var Todo = require('../todo/todo');
 
 var List = {
   displayName: 'List',
   render: function () {
     var children = (this.props.node.children || [])
-      .map((todo) => <Todo 
-        key={todo.id}
-        todo={todo}
-        onClick={this.props.onClick}
-      />, this);
+      .map(function (todo) {
+        return (
+          <Todo 
+            key={todo.id}
+            todo={todo}
+            onClick={this.props.onClick}
+          />
+        );
+      }, this);
 
     return (
       <div className="children">
@@ -21,4 +25,4 @@ var List = {
   }
 };
 
-export default React.createClass(List);
+module.exports = React.createClass(List);

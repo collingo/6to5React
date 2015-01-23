@@ -1,6 +1,8 @@
 var App = require('express');
 var morgan = require('morgan');
 var cons = require('consolidate');
+var React = require('react');
+require("node-jsx").install();
 
 // environment
 var env = process.env.ENV || 'development';
@@ -35,7 +37,10 @@ app.use(morgan(logFormat));
 
 // dynamic routes
 app.get('/', function (req, res) {
-  res.render('index');
+	var reactApp = React.createFactory(require('../client/components/app/app'));
+  res.render('index', {
+  	app: React.renderToString(reactApp())
+  });
 });
 
 // static routes
