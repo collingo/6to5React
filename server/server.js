@@ -1,6 +1,5 @@
-var koa = require('koa');
-var serve = require('koa-static');
-var app = koa();
+var App = require('express');
+var app = App();
 var env = process.env.ENV || 'development';
 var envConfig = {
 	development: {
@@ -14,7 +13,7 @@ var envConfig = {
 };
 var config = envConfig[env];
 
-app.use(serve(__dirname + '/../' + config.clientDir));
+app.use(App.static(__dirname + '/../' + config.clientDir));
 
 app.listen(config.port);
 

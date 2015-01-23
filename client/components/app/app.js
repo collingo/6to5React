@@ -61,11 +61,12 @@ var getData = R.pipe(
   R.apply(R.assoc('children'))
 );
 
-class App {
-  getInitialState() {
+var App = {
+  displayName: 'App',
+  getInitialState: function () {
     return getData(0);
-  }
-  render() {
+  },
+  render: function () {
     return (
       <div id="TodoApp">
         <h1>{this.state.text || 'Todo'}</h1>
@@ -73,14 +74,14 @@ class App {
         <List node={this.state} onClick={this.todoClick} />
       </div>
     );
-  }
-  todoClick(todoId) {
+  },
+  todoClick: function (todoId) {
     this.setState(getData(todoId));
-  }
-  clickBack(e) {
+  },
+  clickBack: function (e) {
     e.preventDefault();
     this.setState(getData(this.state.parent));
   }
 };
 
-export default React.createClass(App.prototype);
+export default React.createClass(App);

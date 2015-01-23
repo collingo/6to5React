@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run devServe & npm run devHtml & npm run devCss & npm run devJs && fg",
-    "devServe": "node --harmony server/server.js",
+    "devServe": "node server/server.js",
     "devHtml": "onchange 'client/**/*.html' -- cp client/index.html dev/index.html",
     "devCss": "stylus -w -m --sourcemap-inline client/index.styl -o dev",
     "devJs": "watchify -d -t [ 6to5ify --modules common ] -t reactify client/index.js -o dev/index.js",
@@ -13,7 +13,7 @@
     "releaseHtml": "cp client/index.html build/index.html",
     "releaseCss": "stylus -m -c client/index.styl -o build",
     "releaseJs": "./tasks minify && cp -R client build/client",
-    "releaseServe": "ENV=production node --harmony server/server.js"
+    "releaseServe": "ENV=production node server/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "6to5ify": "^3.1.2",
     "browserify": "^8.1.1",
     "envify": "^3.2.0",
+    "express": "^4.11.1",
     "koa": "^0.15.0",
     "koa-static": "^1.4.8",
     "minifyify": "^6.0.0",

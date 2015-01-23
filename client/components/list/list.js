@@ -1,8 +1,9 @@
 import React from 'react';
 import Todo from '../todo/todo';
 
-class List {
-  render() {
+var List = {
+  displayName: 'List',
+  render: function () {
     var children = (this.props.node.children || [])
       .map((todo) => <Todo 
         key={todo.id}
@@ -20,4 +21,4 @@ class List {
   }
 };
 
-export default React.createClass(List.prototype);
+export default React.createClass(List);
