@@ -7,25 +7,22 @@ describe('List', function() {
   var sandbox = document.getElementById('sandbox');
   var list;
 
-  beforeEach(function () {
-    list = List({
-      node: {
-        children: []
-      },
-      onClick: function () {
-        console.log('hello');
-      }
-    });
-  });
-
-  it('displayName is "List"', function() {
-    assert.equal('List', list.type.displayName);
-  });
-
   describe('when rendered with no data', function () {
 
     beforeEach(function () {
+      list = List({
+        node: {
+          children: []
+        },
+        onClick: function () {
+          console.log('hello');
+        }
+      });
       React.render(list, sandbox);
+    });
+
+    it('displayName is "List"', function() {
+      assert.equal('List', list.type.displayName);
     });
 
     it('is appended to correct location', function() {
@@ -49,7 +46,29 @@ describe('List', function() {
   describe('when rendered with data', function () {
 
     beforeEach(function () {
+      list = List({
+        node: {
+          id: 0,
+          children: [{
+            id: 1,
+            children: []
+          }, {
+            id: 2,
+            children: []
+          }, {
+            id: 3,
+            children: []
+          }]
+        },
+        onClick: function () {
+          console.log('hello');
+        }
+      });
       React.render(list, sandbox);
+    });
+
+    it('has 3 list items', function() {
+      assert.equal(3, document.querySelectorAll('.children li').length);
     });
 
   }); // with data
